@@ -25,7 +25,7 @@ void init(int n){
 }
 int find(int x){
      if(x == fa[x]) return x; 
-     else return find(fa[x]);
+     else return fa[x] = find(fa[x]);
 }
 int main(){
        scanf("%lld",&n);
@@ -47,7 +47,7 @@ int main(){
                    if(a[u] < a[v]) continue;
                    if(a[u] == a[v] and u < v) continue;
                    int rootu = find(u); int rootv = find(v);
-                   ans = ans + (1ll)* a[u] * compsz[rootu] * compsz[rootv];
+                   ans = ans + (1ll)* a[rootu] * compsz[rootu] * compsz[rootv];
                    fa[rootv] = rootu; compsz[rootu] += compsz[rootv];
              }
        }
@@ -60,7 +60,7 @@ int main(){
                    if(a[u] > a[v]) continue;
                    if(a[u] == a[v] and u < v) continue;
                    int rootu = find(u); int rootv = find(v);
-                   ans = ans - (1ll) * a[u] * compsz[rootu] * compsz[rootv];
+                   ans = ans - (1ll) * a[rootu] * compsz[rootu] * compsz[rootv];
                    fa[rootv] = rootu; compsz[rootu] += compsz[rootv];
              }
        }
